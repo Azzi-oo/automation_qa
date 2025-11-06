@@ -8,6 +8,9 @@ class TestElements:
         def test_text_box(self, driver):
             page = TextBoxPage(driver, 'https://demoqa.com/text-box')
             page.open()
-            page.fill_all_fields('Test User', 'test@test.com', 'Test Address', 'Test Address')
-            page.get_output_result()
-            assert page.check_filled_form()
+            full_name, email, current_address, permanent_address = page.fill_all_fields()
+            output_name, output_email, output_current_address, output_permanent_address =   page.get_output_result()
+            assert output_name == full_name
+            assert output_email == email
+            assert output_current_address == current_address
+            assert output_permanent_address == permanent_address
